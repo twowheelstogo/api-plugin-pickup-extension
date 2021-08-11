@@ -1,0 +1,81 @@
+
+type PickupDetails {
+    "A datetime to collect an order"
+    datetime: String,
+    
+    "A location to take an order"
+    location: CustomAddress
+}
+input PickupDetailsInput {
+    "A datetime to collect an order"
+    datetime: String!,
+    
+    "A location to take an order"
+    location: CustomAddressInput
+}
+input UpdateFulfillmentTypeForGroupInput {
+    "The cart id to update"
+    cartId: String!
+
+    "The cartToken"
+    cartToken: String
+
+    "The fulfillment group to update"
+    fulfillmentGroupId: String!
+
+    "Selected fulfillment type"
+    fulfillmentType: FulfillmentType!
+}
+input SetPickupDetailsOnCartInput {
+    "The cart id to update"
+    cartId: String!
+
+    "The cartToken"
+    cartToken: String
+
+    "Pickup details to save"
+    pickupDetails: PickupDetailsInput!
+}
+type SetPickupDetailsOnCartPayload {
+    "The updated cart"
+    cart: Cart!
+
+    "The cliend mutation id"
+    clientMutationId: String
+}
+
+type UpdateFulfillmentTypeForGroupPayload {
+    "The updated cart"
+    cart: Cart!
+
+    "The cliend mutation id"
+    clientMutationId: String
+}
+
+extend type FulfillmentData {
+    "The required pickup info to collect an order"
+    pickupDetails: PickupDetails
+}
+
+"""
+Extra data for an order fulfillment group with type `pickup`
+"""
+type PickupOrderFulfillmentGroupData {
+    pickupDetails: PickupDetails!
+}
+extend input OrderFulfillmentGroupDataInput {
+    pickupDetails: PickupDetailsInput
+}
+
+extend union OrderFulfillmentGroupData = PickupOrderFulfillmentGroupData
+
+extend type Mutation {
+    "Updates a fulfillment type for a single fulfillment group in cart"
+    updateFulfillmentTypeForGroup(
+        input: UpdateFulfillmentTypeForGroupInput!
+    ): UpdateFulfillmentTypeForGroupPayload!
+    "Sets a pickup details for a single fulfillment group"
+    setPickupDetailsOnCart(
+        input: SetPickupDetailsOnCartInput!
+    ): SetPickupDetailsOnCartPayload!
+}
