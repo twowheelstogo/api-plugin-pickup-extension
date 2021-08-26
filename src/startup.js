@@ -4,7 +4,7 @@ import { PickupDetails } from "./simpleSchemas.js";
  * @param {Object} context Startup context
  * @returns {undefined}
  */
-export default async function cartStartup(context) {
+export default async function pickupStartup(context) {
     context.simpleSchemas.Shipment.extend({
         "type": {
             type: String,
