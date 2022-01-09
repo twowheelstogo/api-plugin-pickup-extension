@@ -5,6 +5,12 @@ type PickupDetails {
     
     "A location to take an order"
     location: CustomAddress
+
+    "branch name"
+    branch: String
+
+    "branch id"
+    branch: String
 }
 input PickupDetailsInput {
     "A datetime to collect an order"
@@ -12,6 +18,12 @@ input PickupDetailsInput {
     
     "A location to take an order"
     location: CustomAddressInput
+
+    "branch name"
+    branch: String
+
+    "branch id"
+    branch: String
 }
 input UpdateFulfillmentTypeForGroupInput {
     "The cart id to update"
