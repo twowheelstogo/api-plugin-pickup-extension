@@ -10,7 +10,7 @@ type PickupDetails {
     branch: String
 
     "branch id"
-    branch: String
+    branchId: ID
 }
 input PickupDetailsInput {
     "A datetime to collect an order"
@@ -23,7 +23,7 @@ input PickupDetailsInput {
     branch: String
 
     "branch id"
-    branch: String
+    branchId: ID
 }
 input UpdateFulfillmentTypeForGroupInput {
     "The cart id to update"
